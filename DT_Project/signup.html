@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BuildHire - Worker Sign Up</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap');
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background-color: #f9fafb;
+    }
+
+    h1, h2, h3, h4, .font-condensed {
+      font-family: 'Barlow Condensed', sans-serif;
+    }
+
+    .form-container {
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    .tool-icon {
+      transform: rotate(-15deg);
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+<div class="w-full max-w-md mx-auto">
+  <!-- Navigation -->
+  <nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <i class="fas fa-hammer text-orange-500 text-2xl"></i>
+        <a href="index.html" class="font-condensed text-2xl font-bold text-gray-800">Build<span class="text-orange-500">Hire</span></a>
+      </div>
+
+      <div class="hidden md:flex space-x-6">
+        <a href="index.html" class="text-gray-800 hover:text-orange-500 font-medium">Home</a>
+        <a href="signup.html" class="text-orange-500 font-medium">Sign up</a>
+      </div>
+      <button id="mobile-menu-button" class="md:hidden text-gray-800 focus:outline-none">
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
+    </div>
+
+  <!-- Signup Form -->
+  <div class="bg-white rounded-xl form-container p-8">
+    <h2 class="font-condensed text-2xl font-bold mb-6 text-center text-gray-800">Worker Sign Up</h2>
+    <form id="signupFormElement" class="space-y-4">
+      <div>
+        <label for="signupName" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <i class="fas fa-user text-gray-400"></i>
+          </div>
+          <input type="text" id="signupName" required
+                 class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 placeholder-gray-400"
+                 placeholder="Promaod chamar" />
+        </div>
+      </div>
+
+      <div>
+        <label for="signupEmail" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <i class="fas fa-envelope text-gray-400"></i>
+          </div>
+          <input type="email" id="signupEmail" required
+                 class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 placeholder-gray-400"
+                 placeholder="your@email.com" />
+        </div>
+      </div>
+
+      <div>
+        <label for="signupPassword" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <i class="fas fa-lock text-gray-400"></i>
+          </div>
+          <input type="password" id="signupPassword" required minlength="8"
+                 class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 placeholder-gray-400"
+                 placeholder="••••••••" />
+        </div>
+        <p class="mt-1 text-xs text-gray-500">Must be at least 8 characters</p>
+      </div>
+
+      <div>
+        <label for="signupTrade" class="block text-sm font-medium text-gray-700 mb-1">Role</label>
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <i class="fas fa-tools text-gray-400"></i>
+          </div>
+          <select id="signupTrade" required
+                  class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 appearance-none">
+            <option value="" disabled selected>Select your Role</option>
+            <option value="carpenter">Carpenter</option>
+            <option value="electrician">Electrician</option>
+            <option value="plumber">Plumber</option>
+            <option value="mason">Mason</option>
+            <option value="painter">Painter</option>
+            <option value="welder">Welder</option>
+            <option value="laborer">General Laborer</option>
+            <option value="operator">Heavy Equipment Operator</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label for="signupExperience" class="block text-sm font-medium text-gray-700 mb-1">Years of Experience</label>
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <i class="fas fa-briefcase text-gray-400"></i>
+          </div>
+          <input type="number" id="signupExperience" min="0" max="50" required
+                 class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 placeholder-gray-400"
+                 placeholder="2" />
+        </div>
+      </div>
+
+      <div class="flex items-center">
+        <input id="termsAgreement" type="checkbox" required
+               class="h-4 w-4 text-orange-500 focus:ring-orange-500 border-gray-300 rounded" />
+        <label for="termsAgreement" class="ml-2 block text-sm text-gray-700">
+          I agree to the <a href="#" class="text-orange-500 hover:text-orange-600">Terms of Service</a> and <a href="#" class="text-orange-500 hover:text-orange-600">Privacy Policy</a>
+        </label>
+      </div>
+
+      <button type="submit"
+              class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-lg transition duration-200 flex items-center justify-center mt-4">
+        <i class="fas fa-user-plus mr-2"></i> Sign Up
+      </button>
+    </form>
+  </div>
+
+  <!-- Employer Login Link -->
+  <div class="mt-8 p-4 bg-white rounded-lg text-center shadow-sm">
+    <p class="text-gray-600 text-sm">Already Have Account <a href="login.html" class="text-orange-500 hover:text-orange-600 font-medium">Login</a></p>
+  </div>
+</div>
+
+<script>
+  document.getElementById('signupFormElement').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById('signupName').value;
+    const email = document.getElementById('signupEmail').value;
+    const password = document.getElementById('signupPassword').value;
+    const trade = document.getElementById('signupTrade').value;
+    const experience = document.getElementById('signupExperience').value;
+
+    // For demo: Display a success message
+    alert('Sign up successful! (Demo only)');
+    console.log({ name, email, password, trade, experience });
+
+    // In a real application, you would send this data to your backend
+    // fetch('/api/signup', {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({
+    //         name,
+    //         email,
+    //         password,
+    //         trade,
+    //         experience
+    //     }),
+    // })
+    // .then(response => response.json())
+    // .then(data => {
+    //     console.log('Success:', data);
+    //     // Redirect or show success message
+    // })
+    // .catch((error) => {
+    //     console.error('Error:', error);
+    // });
+  });
+</script>
+</body>
+</html>

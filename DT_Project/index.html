@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BuildHire - Construction Job Marketplace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap');
+        
+        body {
+            font-family: 'Barlow', sans-serif;
+        }
+        
+        h1, h2, h3, h4, .font-condensed {
+            font-family: 'Barlow Condensed', sans-serif;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #f97316 0%, #f59e0b 100%);
+        }
+        
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .testimonial-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f3f4f6 100%);
+        }
+        
+        .safety-badge {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: #f97316;
+            color: white;
+            font-size: 2rem;
+        }
+        
+        .mobile-menu {
+            transition: all 0.3s ease;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-hammer text-orange-500 text-2xl"></i>
+                <a href="#" class="font-condensed text-2xl font-bold text-gray-800">Build<span class="text-orange-500">Hire</span></a>
+            </div>
+            
+            <div class="hidden md:flex space-x-6">
+                <a href="index.html" class="text-gray-800 hover:text-orange-500 font-medium">Home</a>
+                <a href="jobs.html" class="text-gray-800 hover:text-orange-500 font-medium">Find Jobs</a>
+                <a href="employers.html" class="text-gray-800 hover:text-orange-500 font-medium">For Employers</a>
+                <a href="contact.html" class="text-gray-800 hover:text-orange-500 font-medium">Contact us</a>
+            </div>
+            
+            <div class="hidden md:flex space-x-4">
+                <a href="login.html" class="px-4 py-2 text-gray-800 font-medium hover:text-orange-500">Login</a>
+                <a href="signup.html" class="px-4 py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600 font-medium">Sign Up</a>
+            </div>
+            
+            <button id="mobile-menu-button" class="md:hidden text-gray-800 focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu hidden md:hidden bg-white py-4 px-4 absolute w-full left-0 shadow-lg">
+            <a href="index.html" class="block py-2 text-gray-800 hover:text-orange-500 font-medium">Home</a>
+            <a href="jobs.html" class="block py-2 text-gray-800 hover:text-orange-500 font-medium">Find Jobs</a>
+            <a href="employers.html" class="block py-2 text-gray-800 hover:text-orange-500 font-medium">For Employers</a>
+            <div class="mt-4 pt-4 border-t border-gray-200">
+                <a href="login.html" class="block py-2 text-gray-800 font-medium hover:text-orange-500">Login</a>
+                <a href="signup.html" class="block py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600 font-medium text-center">Sign Up</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient text-white py-20 md:py-32">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h1 class="font-condensed text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                    Build Your Career
+                </h1>
+                <p class="text-xl mb-8 text-orange-100">
+                    Connect with top employers and find the perfect construction job that matches your skills and experience.
+                </p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="jobs.html" class="px-6 py-3 bg-white text-orange-600 rounded-md font-bold text-center hover:bg-gray-100 transition duration-300">
+                        Find Jobs
+                    </a>
+                    <a href="employers.html" class="px-6 py-3 border-2 border-white text-white rounded-md font-bold text-center hover:bg-white hover:text-orange-600 transition duration-300">
+                        Post Job
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
+                     alt="Construction workers" 
+                     class="rounded-lg shadow-2xl max-w-md w-full h-auto border-4 border-white">
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="bg-gray-100 py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-orange-500 text-4xl mb-3">
+                        <i class="fas fa-hard-hat"></i>
+                    </div>
+                    <h3 class="font-condensed text-2xl font-bold mb-2">1000+</h3>
+                    <p class="text-gray-600">Skilled Workers</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-orange-500 text-4xl mb-3">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3 class="font-condensed text-2xl font-bold mb-2">250+</h3>
+                    <p class="text-gray-600">Construction Companies</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-orange-500 text-4xl mb-3">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3 class="font-condensed text-2xl font-bold mb-2">500+</h3>
+                    <p class="text-gray-600">Active Job Listings</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Job Listings Section -->
+    <section id="jobs" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="font-condensed text-3xl md:text-4xl font-bold mb-4 text-gray-800">Find Your Next Job</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Browse through thousands of construction job opportunities across all specialties and experience levels.</p>
+            </div>
+
+            <!-- Job Listings -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Job Card 1 -->
+                <div class="job-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="font-condensed text-xl font-bold text-gray-800">Commercial Carpenter</h3>
+                                <p class="text-orange-500 font-medium">Construction Com.</p>
+                            </div>
+                            <span class="bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full">Full-time</span>
+                        </div>
+                        <div class="flex items-center text-gray-600 mb-4">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            <span>Mohali, IN</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Seeking experienced commercial carpenters for high-rise project in downtown Chicago. Must have 2+ years experience.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-800 font-bold">Rs 0.8k - 1k/day</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Job Card 2 -->
+                <div class="job-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="font-condensed text-xl font-bold text-gray-800">Electrician</h3>
+                                <p class="text-orange-500 font-medium">PowerUp Electrical</p>
+                            </div>
+                            <span class="bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full">Contract</span>
+                        </div>
+                        <div class="flex items-center text-gray-600 mb-4">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            <span>Bihar, IN</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Licensed electricians needed for commercial projects. Must have own tools and reliable transportation.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-800 font-bold">Rs 0.8k- Rs 1.5/day</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Job Card 3 -->
+                <div class="job-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="font-condensed text-xl font-bold text-gray-800">Construction Laborer</h3>
+                                <p class="text-orange-500 font-medium">BuildRight Inc.</p>
+                            </div>
+                            <span class="bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full">Part-time</span>
+                        </div>
+                        <div class="flex items-center text-gray-600 mb-4">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            <span>Chandigarh, IN</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Entry-level position with on-the-job training. No experience required. Must be able to lift 50+ lbs.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-800 font-bold">Rs 0.8k/day</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-10">
+                <a href="jobs.html" class="inline-block px-6 py-3 bg-orange-500 text-white rounded-md font-bold hover:bg-orange-600 transition duration-300">
+                    View All Jobs
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- For Workers Section -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+                    <h2 class="font-condensed text-3xl md:text-4xl font-bold mb-6 text-gray-800">Create Your Worker Profile</h2>
+                    <p class="text-gray-600 mb-6">
+                        Showcase your skills, experience, and certifications to stand out to employers. A complete profile increases your chances of getting hired by up to 5x.
+                    </p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-orange-500 mt-1 mr-2"></i>
+                            <span class="text-gray-700">Highlight your specialized skills and certifications</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-orange-500 mt-1 mr-2"></i>
+                            <span class="text-gray-700">Upload photos of your previous work</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-orange-500 mt-1 mr-2"></i>
+                            <span class="text-gray-700">Get verified badges for safety certifications</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-orange-500 mt-1 mr-2"></i>
+                            <span class="text-gray-700">Receive job recommendations based on your profile</span>
+                        </li>
+                    </ul>
+                    <a href="signup.html" class="px-6 py-3 bg-orange-500 text-white rounded-md font-bold hover:bg-orange-600 transition duration-300 inline-block">
+                        Create Your Profile
+                    </a>
+                </div>
+                <div class="md:w-

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BuildHire - Find Construction Jobs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap');
+
+        body {
+            font-family: 'Barlow', sans-serif;
+            background-color: #f9fafb;
+        }
+
+        h1, h2, h3, h4, .font-condensed {
+            font-family: 'Barlow Condensed', sans-serif;
+        }
+
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .filter-card {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+<!-- Navigation -->
+<nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+            <i class="fas fa-hammer text-orange-500 text-2xl"></i>
+            <a href="#" class="font-condensed text-2xl font-bold text-gray-800">Build<span class="text-orange-500">Hire</span></a>
+        </div>
+
+        <div class="hidden md:flex space-x-6">
+            <a href="index.html" class="text-gray-800 hover:text-orange-500 font-medium">Home</a>
+            <a href="find-jobs.html" class="text-orange-500 font-medium">Find Jobs</a>
+            <a href="employers.html" class="text-gray-800 hover:text-orange-500 font-medium">For Employers</a>
+            <a href="contact.html" class="text-gray-800 hover:text-orange-500 font-medium">Contact us</a>
+        </div>
+
+        <div class="hidden md:flex space-x-4">
+            <a href="login.html" class="px-4 py-2 text-gray-800 font-medium hover:text-orange-500">Login</a>
+            <a href="signup.html" class="px-4 py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600 font-medium">Sign Up</a>
+        </div>
+
+        <button id="mobile-menu-button" class="md:hidden text-gray-800 focus:outline-none">
+            <i class="fas fa-bars text-2xl"></i>
+        </button>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<div class="container mx-auto px-4 py-8">
+    <!-- Page Header -->
+    <div class="text-center mb-12">
+        <h1 class="font-condensed text-4xl md:text-5xl font-bold mb-4 text-gray-800">Find <span class="text-orange-500">Construction Jobs</span></h1>
+        <p class="text-gray-600 max-w-2xl mx-auto">Browse thousands of construction job opportunities across all specialties and experience levels.</p>
+    </div>
+
+    <!-- Filters and Job Listings -->
+    <div class="flex flex-col lg:flex-row gap-8">
+        <!-- Filters Sidebar -->
+        <div class="lg:w-1/4">
+            <div class="bg-white filter-card rounded-lg p-6 sticky top-24">
+                <h3 class="font-condensed text-xl font-bold mb-4 text-gray-800">Filter Jobs</h3>
+
+                <!-- Job Type Filter -->
+                <div class="mb-6">
+                    <h4 class="font-medium text-gray-700 mb-2">Job Type</h4>
+                    <div class="space-y-2">
+                        <div class="flex items-center">
+                            <input id="full-time" type="checkbox" checked
+                                   class="h-4 w-4 text-orange-500 focus:ring-orange-500 border-gray-300 rounded">
+                            <label for="full-time" class="ml-2 text-sm text-gray-700">Full-time</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input id="part-time" type="checkbox"
+                                   class="h-4 w-4 text-orange-500 focus:ring-orange-500 border-gray-300 rounded">
+                            <label for="part-time" class="ml-2 text-sm text-gray-700">Part-time</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input id="contract" type="checkbox"
+                                   class="h-4 w-4 text-orange-500 focus:ring-orange-500 border-gray-300 rounded">
+                            <label for="contract" class="ml-2 text-sm text-gray-700">Contract</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input id="temporary" type="checkbox"
+                                   class="h-4 w-4 text-orange-500 focus:ring-orange-500 border-gray-300 rounded">
+                            <label for="temporary" class="ml-2 text-sm text-gray-700">Temporary</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trade Filter -->
+                <div class="mb-6">
+                    <h4 class="font-medium text-gray-700 mb-2">Trade</h4>
+                    <select class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-orange-500 focus:border-orange-500">
+                        <option value="">All Trades</option>
+                        <option value="carpentry">Carpentry</option>
+                        <option value="electrical">Electrical</option>
+                        <option value="plumbing">Plumbing</option>
+                        <option value="masonry">Masonry</option>
+                        <option value="painting">Painting</option>
+                        <option value="welding">Welding</option>
+                        <option value="labor">General Labor</option>
+                    </select>
+                </div>
+
+                <!-- Experience Level -->
+                <div class="mb-6">
+                    <h4 class="font-medium text-gray-700 mb-2">Experience Level</h4>
+                    <select class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-orange-500 focus:border-orange-500">
+                        <option value="">All Levels</option>
+                        <option value="entry">Entry Level (0-2 years)</option>
+                        <option value="mid">Mid Level (3-5 years)</option>
+                        <option value="senior">Senior Level (5+ years)</option>
+                    </select>
+                </div>
+
+                <!-- Location -->
+                <div class="mb-6">
+                    <h4 class="font-medium text-gray-700 mb-2">Location</h4>
+                    <input type="text" placeholder="City or ZIP"
+                           class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-orange-500 focus:border-orange-500">
+                </div>
+
+                <!-- Salary Range -->
+                <div class="mb-6">
+                    <h4 class="font-medium text-gray-700 mb-2">Pay Rate (₹/hr)</h4>
+                    <div class="flex items-center space-x-2">
+                        <input type="number" placeholder="Min"
+                               class="w-1/2 border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-orange-500 focus:border-orange-500">
+                        <span>to</span>
+                        <input type="number" placeholder="Max"
+                               class="w-1/2 border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-orange-500 focus:border-orange-500">
+                    </div>
+                </div>
+
+                <button class="w-full bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4 rounded-lg transition duration-200">
+                    Apply Filters
+                </button>
+            </div>
+        </div>
+
+        <!-- Job Listings -->
+        <div class="lg:w-3/4">
+            <!-- Search Bar -->
+            <div class="bg-white filter-card rounded-lg p-4 mb-6">
+                <div class="flex">
+                    <div class="relative flex-grow">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-search text-gray-400"></i>
+                        </div>
+                        <input type="text" placeholder="Search for jobs (e.g. 'electrician', 'foreman')"
+                               class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-l-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500">
+                    </div>
+                    <button class="bg-orange-500 hover:bg-orange-600 text-white px-4 rounded-r-lg">
+                        Search
+                    </button>
+                </div>
+            </div>
+
+            <!-- Job Cards -->
+            <div class="space-y-6">
+                <!-- Job Card 1 -->
+                <div class="job-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="font-condensed text-xl font-bold text-gray-800">Commercial Carpenter</h3>
+                                <p class="text-orange-500 font-medium">ABC Construction Co.</p>
+                            </div>
+                            <span class="badge bg-orange-100 text-orange-800">Full-time</span>
+                        </div>
+                        <div class="flex items-center text-gray-600 mb-4">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            <span>Mumbai, Maharashtra</span>
+                            <span class="mx-2">•</span>
+                            <i class="fas fa-briefcase mr-2"></i>
+                            <span>3+ years experience</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Seeking experienced commercial carpenters for high-rise project. Must have own tools and 3+ years experience with framing and finish work.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-800 font-bold">₹250 - ₹350/hr</span>
+                            <a href="job-details.html" class="text-orange-500 hover:text-orange-600 font-medium">View Details <i class="fas fa-chevron-right ml-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job Card 2 -->
+                <div class="job-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="font-condensed text-xl font-bold text-gray-800">Electrician</h3>
+                                <p class="text-orange-500 font-medium">PowerUp Electrical</p>
+                            </div>
+                            <span class="badge bg-orange-100 text-orange-800">Contract</span>
+                        </div>
+                        <div class="flex items-center text-gray-600 mb-4">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            <span>Bangalore, Karnataka</span>
+                            <span class="mx-2">•</span>
+                            <i class="fas fa-briefcase mr-2"></i>
+                            <span>5+ years experience</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Licensed electricians needed for commercial projects. Must have valid license, own tools and reliable transportation. Experience with commercial wiring required.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-800 font-bold">₹320 - ₹400/hr</span>
+                            <a href="job-details.html" class="text-orange-500 hover:text-orange-600 font-medium">View Details <i class="fas fa-chevron-right ml-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job Card 3 -->
+                <div class="job-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="font-condensed text-xl font-bold text-gray-800">Construction Laborer</h3>
+                                <p class="text-orange-500 font-medium">BuildRight Inc.</p>
+                            </div>
+                            <span class="badge bg-orange-100 text-orange-800">Full-time</span>
+                        </div>
+                        <div class="flex items-center text-gray-600 mb-4">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            <span>New Delhi</span>
+                            <span class="mx-2">•</span>
+                            <i class="fas fa-briefcase mr-2"></i>
+                            <span>Entry Level</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Entry-level position with on-the-job training. No experience required. Must be able to lift 50+ lbs and work outdoors in all weather conditions.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-800 font-bold">₹180 - ₹220/hr</span>
+                            <a href="job-details.html" class="text-orange-500 hover:text-orange-600 font-medium">View Details <i class="fas fa-chevron-right ml-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job Card 4 -->
+                <div class="job-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="font-condensed text-xl font-bold text-gray-800">Masonry Foreman</h3>
+                                <p class="text-orange-500 font-medium">StoneCraft Builders</p>
+                            </div>
+                            <span class="badge bg-orange-100 text-orange-800">Full-time</span>
+                        </div>
+                        <div class="flex items-center text-gray-600 mb-4">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            <span>Pune, Maharashtra</span>
+                            <span class="mx-2">•</span>
+                            <i class="fas fa-briefcase mr-2"></i>
+                            <span>8+ years experience</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Experienced masonry foreman needed to lead crew on commercial projects. Must have experience with brick, block, and stone work. Leadership experience required.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-800 font-bold">₹450 - ₹550/hr</span>
+                            <a href="job-details.html" class="text-orange-500 hover:text-orange-600 font-medium">View Details <i class="fas fa-chevron-right ml-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="mt-8 flex justify-center">
+                <nav class="inline-flex rounded-md shadow">
+                    <a href="#" class="px-3 py-2 rounded-l-md border border-gray-300 bg-white text-gray-500 hover:bg-gray-50">
+                        <i class="fas fa-chevron-left"></i>
+                    </a>
+                    <a href="#" class="px-4 py-2 border-t border-b border-gray-300 bg-white text-orange-600 font-medium">1</a>
+                    <a href="#" class="px-4 py-2 border border-gray-300 bg-white text-gray-500 hover:bg-gray-50">2</a>
+                    <a href="#" class="px-4 py-2 border border-gray-300 bg-white text-gray-500 hover:bg-gray-50">3</a>
+                    <a href="#" class="px-3 py-2 rounded-r-md border border-gray-300 bg-white text-gray-500 hover:bg-gray-50">
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-gray-800 text-white py-12 mt-12">
+    <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-4 gap-8">
+            <div>
+                <div class="flex items-center space-x-2 mb-4">
+                    <i class="fas fa-hammer text-orange-500 text-2xl"></i>
+                    <span class="font-condensed text-xl font-bold">Build<span class="text-orange-500">Hire</span></span>
+                </div>
+                <p class="text-gray-400">Connecting skilled construction workers with employers since 2023.</p>
+            </div>
+            <div>
+                <h4 class="font-condensed text-lg font-bold mb-4">For Workers</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-400 hover:text-orange-500 transition">Browse Jobs</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-orange-500 transition">Create Profile</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-orange-500 transition">Safety Training</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-condensed text-lg font-bold mb-4">For Employers</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-400 hover:text-orange-500 transition">Post a Job</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-orange-500 transition">Browse Workers</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-orange-500 transition">Pricing</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-condensed text-lg font-bold mb-4">Company</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-400 hover:text-orange-500 transition">About Us</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-orange-500 transition">Contact</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-orange-500 transition">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+            <p>&copy; 2023 BuildHire. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Mobile menu toggle functionality would go here
+    document.getElementById('mobile-menu-button').addEventListener('click', function() {
+        // Mobile menu toggle logic
+        console.log('Mobile menu button clicked');
+    });
+
+    // Job filtering functionality would go here
+    document.querySelectorAll('.job-card').forEach(card => {
+        card.addEventListener('click', function() {
+            // Could make entire card clickable if desired
+        });
+    });
+</script>
+</body>
+</html>

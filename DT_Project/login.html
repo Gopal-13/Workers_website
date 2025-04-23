@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BuildHire - Construction Workforce Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap');
+
+        body {
+            font-family: 'Barlow', sans-serif;
+            background-color: #f9fafb;
+        }
+
+        h1, h2, h3, h4, .font-condensed {
+            font-family: 'Barlow Condensed', sans-serif;
+        }
+
+        .form-container {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .tool-icon {
+            transform: rotate(-15deg);
+        }
+
+        .toggle-form {
+            transition: all 0.3s ease;
+        }
+
+        .toggle-form:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+<div class="w-full max-w-md mx-auto">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-hammer text-orange-500 text-2xl"></i>
+                <a href="index.html" class="font-condensed text-2xl font-bold text-gray-800">Build<span class="text-orange-500">Hire</span></a>
+            </div>
+
+            <div class="hidden md:flex space-x-6">
+                <a href="index.html" class="text-gray-800 hover:text-orange-500 font-medium">Home</a>
+                <a href="login.html" class="text-orange-500 font-medium">Login</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-gray-800 focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+
+        <!-- Form Container -->
+    <div id="formContainer" class="bg-white rounded-xl form-container overflow-hidden transition-all duration-500">
+        <!-- Login Form -->
+        <div id="loginForm" class="p-8">
+            <h2 class="font-condensed text-2xl font-bold mb-6 text-center text-gray-800">Worker Login</h2>
+            <form id="loginFormElement" class="space-y-6">
+                <div>
+                    <label for="loginEmail" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-envelope text-gray-400"></i>
+                        </div>
+                        <input type="email" id="loginEmail" required
+                               class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 placeholder-gray-400"
+                               placeholder="your@email.com">
+                    </div>
+                </div>
+                <div>
+                    <label for="loginPassword" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-lock text-gray-400"></i>
+                        </div>
+                        <input type="password" id="loginPassword" required
+                               class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 placeholder-gray-400"
+                               placeholder="••••••••">
+                    </div>
+                </div>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <input id="rememberMe" type="checkbox" checked
+                               class="h-4 w-4 text-orange-500 focus:ring-orange-500 border-gray-300 rounded">
+                        <label for="rememberMe" class="ml-2 block text-sm text-gray-700">Remember me</label>
+                    </div>
+                </div>
+                <button type="submit"
+                        class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-lg transition duration-200 flex items-center justify-center">
+                    <i class="fas fa-sign-in-alt mr-2"></i> Login
+                </button>
+            </form>
+            <div class="mt-6 text-center">
+                <p class="text-gray-600">Not a member yet?
+                    <a href="signup.html" class="toggle-form text-orange-500 hover:text-orange-600 font-medium">Sign up now</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+<script>
+    // Cookie functions
+    function setCookie(name, value, days) {
+        let expires = "";
+        if (days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
+
+    function getCookie(name) {
+        const nameEQ = name + "=";
+        const ca = document.cookie.split(';');
+        for(let i=0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    function eraseCookie(name) {
+        document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    }
+
+    // Check for saved login credentials
+    window.addEventListener('DOMContentLoaded', function() {
+        const savedEmail = getCookie('buildhire_email');
+        const savedPassword = getCookie('buildhire_password');
+        const rememberMe = getCookie('buildhire_remember') === 'true';
+
+        if (savedEmail && savedPassword && rememberMe) {
+            document.getElementById('loginEmail').value = savedEmail;
+            document.getElementById('loginPassword').value = savedPassword;
+            document.getElementById('rememberMe').checked = true;
+        }
+    });
+
+    // Login form submission
+    document.getElementById('loginFormElement').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+        const rememberMe = document.getElementById('rememberMe').checked;
+
+        // In a real app, you would validate credentials with your backend
+        // For demo purposes, we'll just store them in cookies
+        if (rememberMe) {
+            setCookie('buildhire_email', email, 30);
+            setCookie('buildhire_password', password, 30);
+            setCookie('buildhire_remember', true, 30);
+        } else {
+            eraseCookie('buildhire_email');
+            eraseCookie('buildhire_password');
+            eraseCookie('buildhire_remember');
+        }
+
+        // Show success message (in a real app, you would redirect)
+        alert('Login successful! (Demo: Credentials stored in cookies)');
+        console.log('Login attempt with:', {email, password, rememberMe});
+
+        // In a real application, you would redirect or handle the login response
+        // window.location.href = 'dashboard.html';
+    });
+</script>
+</body>
+</html>
